@@ -2,7 +2,7 @@
   <div>
     <div class="flex items-center justify-center m-5 gap-3">
       <div class="max-w-screen-md w-full">
-        <UiInput type="url" placeholder="RSS Feed" v-model="input" />
+        <UiInput type="url" placeholder="https://vnexpress.net/rss/tin-moi-nhat.rss" v-model="input"/>
       </div>
       <UiButton :loading="loading" variant="outline" @click="rssQuery">
         <Icon :class="`h-5 w-5 ${loading ? 'animate-spin' : ''}`" :name="loading ? 'lucide:loader-2' : 'lucide:rss'">
@@ -37,7 +37,7 @@
 <script lang="ts" setup>
 import { extractFromXml } from '@extractus/feed-extractor'
 
-const input = ref('https://vnexpress.net/rss/tin-moi-nhat.rss')
+const input = ref('');
 const loading = ref(false);
 const proxy = 'https://api.allorigins.win/get?url=';
 const rssData = ref();
