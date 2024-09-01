@@ -2,7 +2,8 @@
   <div>
     <div class="flex items-center justify-center m-5 gap-3">
       <div class="max-w-screen-md w-full">
-        <UiInput type="search" placeholder="https://vnexpress.net/rss/tin-moi-nhat.rss" v-model="input" @keyup.enter="rssQuery"/>
+        <UiInput type="search" placeholder="https://vnexpress.net/rss/tin-moi-nhat.rss" v-model="input"
+          @keyup.enter="rssQuery" />
       </div>
       <UiButton :loading="loading" variant="outline" @click="rssQuery">
         <Icon :class="`h-5 w-5 ${loading ? 'animate-spin' : ''}`" :name="loading ? 'lucide:loader-2' : 'lucide:rss'">
@@ -39,11 +40,11 @@
 <script lang="ts" setup>
 import { extractFromXml } from '@extractus/feed-extractor'
 
-const input = ref('https://vnexpress.net/rss/tin-moi-nhat.rss');
+const route = useRoute();
+const input = ref(String(route.query.q ?? ''));
 const loading = ref(false);
 const proxy = 'https://api.allorigins.win/get?url=';
 const rssData = ref();
-
 
 function toast(msg: string, type: "warning" | "default" | "success" | "info" | "destructive" = 'warning') {
   useToast().toast({
@@ -89,8 +90,8 @@ async function rssQuery() {
           }
         }
       })
-      console.log(feed);
       rssData.value = feed;
+      window.history.replaceState(null, '', '?q=' + input.value);
     });
 }
 
