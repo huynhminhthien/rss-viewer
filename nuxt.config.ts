@@ -7,9 +7,14 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
     "@vueuse/nuxt",
-    "nuxt-icon",
+    "@nuxt/icon",
     "@vee-validate/nuxt"
   ],
+  icon: {
+    serverBundle: {
+      collections: ['lucide']
+    }
+  },
 
   tailwindcss: {
     exposeConfig: true,

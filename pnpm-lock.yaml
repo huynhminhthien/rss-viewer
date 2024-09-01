@@ -48,9 +48,6 @@ importers:
       '@iconify-json/lucide':
         specifier: ^1.1.209
         version: 1.1.209
-      '@iconify-json/ph':
-        specifier: ^1.1.14
-        version: 1.1.14
       '@nuxt/icon':
         specifier: ^1.5.0
         version: 1.5.0(magicast@0.3.5)(rollup@4.21.2)(vite@5.4.2(@types/node@22.5.1)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))
@@ -720,9 +717,6 @@ packages:
 
   '@iconify-json/lucide@1.1.209':
     resolution: {integrity: sha512-B2w1Lz/03561yki/7x1fHQ+ElRSJ5rDqBd3HySXR5ajRtzPV1H3csd/QjHJlEp0j1/7nixSZHoxfHsBeHnTgcQ==}
-
-  '@iconify-json/ph@1.1.14':
-    resolution: {integrity: sha512-s1hZVaxIpl40qLEhjqPRMcZl4A3M4fZ+77Fi+VuOb/eKkIHIMutAoBHIR+0a3l7psUweZQGj9hSyL2P5CIj6qA==}
 
   '@iconify/collections@1.0.454':
     resolution: {integrity: sha512-bE/6YBUNhNhTLjytCGrCD+rS0hrlkSC0J4e5svggLVnPoOgvA0yKIAxyUtyWl0666o//3CHlnAizwvA1JYm64w==}
@@ -4334,10 +4328,6 @@ snapshots:
       - supports-color
 
   '@iconify-json/lucide@1.1.209':
-    dependencies:
-      '@iconify/types': 2.0.0
-
-  '@iconify-json/ph@1.1.14':
     dependencies:
       '@iconify/types': 2.0.0
 
