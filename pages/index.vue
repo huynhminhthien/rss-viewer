@@ -2,7 +2,7 @@
   <div>
     <div class="flex items-center justify-center m-5 gap-3">
       <div class="max-w-screen-md w-full">
-        <UiInput type="url" placeholder="https://vnexpress.net/rss/tin-moi-nhat.rss" v-model="input"/>
+        <UiInput type="search" placeholder="https://vnexpress.net/rss/tin-moi-nhat.rss" v-model="input" @keyup.enter="rssQuery"/>
       </div>
       <UiButton :loading="loading" variant="outline" @click="rssQuery">
         <Icon :class="`h-5 w-5 ${loading ? 'animate-spin' : ''}`" :name="loading ? 'lucide:loader-2' : 'lucide:rss'">
@@ -14,9 +14,11 @@
     <div>
       <h1 class="flex justify-center">{{ rssData?.title }}</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 m-4">
-        <UiCard v-for="item in rssData?.entries" class="max-w-sm" :title="item.title" :description="item.description">
+        <UiCard v-for="item in rssData?.entries" class="max-w-sm" :title="item.title">
           <template #content>
             <UiCardContent>
+              <div v-html="item.description">
+              </div>
               <ul class="mt-7 flex flex-col gap-2 pl-2 text-ellipsis overflow-hidden">
                 <li v-for="url in item.relatedUrls" class="flex items-start gap-4">
                   <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-primary" />
@@ -37,7 +39,7 @@
 <script lang="ts" setup>
 import { extractFromXml } from '@extractus/feed-extractor'
 
-const input = ref('');
+const input = ref('https://vnexpress.net/rss/tin-moi-nhat.rss');
 const loading = ref(false);
 const proxy = 'https://api.allorigins.win/get?url=';
 const rssData = ref();
@@ -80,8 +82,10 @@ async function rssQuery() {
         getExtraEntryFields: (feedEntry) => {
           const content = JSON.stringify(feedEntry);
           const relatedUrls = extractURLs(content);
+          const description = 'description' in feedEntry ? feedEntry['description'] : ''
           return {
             relatedUrls: new Set(relatedUrls),
+            description: description,
           }
         }
       })
