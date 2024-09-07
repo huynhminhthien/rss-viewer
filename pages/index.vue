@@ -2,7 +2,7 @@
   <div>
     <div class="flex items-center justify-center m-5 gap-3">
       <div class="max-w-screen-md w-full">
-        <UiInput type="search" placeholder="https://vnexpress.net/rss/tin-moi-nhat.rss" v-model="input"
+        <UiInput type="url" placeholder="https://vnexpress.net/rss/tin-moi-nhat.rss" v-model="input"
           @keyup.enter="rssQuery" />
       </div>
       <UiButton :loading="loading" variant="outline" @click="rssQuery">
@@ -61,8 +61,11 @@ async function rssQuery() {
     return;
   }
   if (!isValidUrl(input.value)) {
-    toast(`Invalid url '${input.value}'`);
-    return;
+    if (!isMissedHttp(input.value)) {
+      toast(`Invalid url '${input.value}'`);
+      return;
+    }
+    input.value = `https://${input.value}`;
   }
 
   loading.value = true;
