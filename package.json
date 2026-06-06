@@ -13,7 +13,7 @@
     "@extractus/feed-extractor": "^7.1.4",
     "@vee-validate/nuxt": "^4.15.0",
     "@vee-validate/zod": "^4.15.0",
-    "axios": "^1.8.4",
+    "axios": "^1.16.0",
     "buffer": "^6.0.3",
     "nuxt": "^3.16.2",
     "radix-vue": "^1.9.17",
